@@ -5,6 +5,8 @@
 
 > [Github - Disciplina](https://github.com/rogeriosilva-ifpi/ifpi-tds-2024.2-backend-366?authuser=0)
 
+> [FastAPI do Zero - Curso Completo](https://github.com/dunossauro/fastapi-do-zero)
+
 ### Livros
 
 > [FastAPI - Livro - Docs](https://fastapi.tiangolo.com/learn/?authuser=0)
@@ -13,10 +15,26 @@
 
 ### Atividades
 
-> [A - API Books v1](/terceiro-periodo/pwb/atividades/A-API-Books-v1/README.md)
+- [API Books v1](https://github.com/LyanKaleu/PWB-366-IFPI/tree/main/2024-10-16)
 
-> **Respostas:**
-> - [A - API Books v1](https://github.com/LyanKaleu/PWB-366-IFPI/tree/main/2024-10-16)
+> Crie uma API para gerenciar Livros. Faça as operações para:
+> 
+> - **Listar Todos**: Deve ser possível aplicar filtro por gênero e ano de lançamento.
+> - **Obter Detalhes de um Livro por ID**.
+> - **Atualizar Livro**.
+> - **Remover Livro**.
+> 
+> Os atributos do Livro são:
+> 
+> - **id**: Identificador único do livro.
+> - **titulo**: Título do livro.
+> - **genero**: Gênero literário do livro.
+> - **ano**: Ano de lançamento do livro.
+> - **autor**: Autor do livro.
+> - **pais**: País de origem do livro.
+> - **quantidade de páginas**: Número de páginas do livro.
+
+
 
 
 ### Slides
