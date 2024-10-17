@@ -21,4 +21,4 @@
 
 ### Slides
 
-> [Slides FastAPI - Let's Code Together](/terceiro-periodo/pwb/slides/FastAPI%20Slides%20-%20Courses.pdf)
+> [Slides FastAPI - Let's Code Together](https://github.com/LyanKaleu/PWB-366-IFPI/blob/main/slides/FastAPI%20Slides%20-%20Courses.pdf)
