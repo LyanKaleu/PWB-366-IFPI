@@ -3,6 +3,9 @@ from sqlmodel import SQLModel
 from .clubes_controller import router as clubes_router
 from .database import get_engine
 
+# Passos
+# > pip install -r requirements.txt
+# > fastapi dev main.py
 
 app = FastAPI()
 

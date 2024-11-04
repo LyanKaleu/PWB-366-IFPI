@@ -28,7 +28,7 @@ def get_clubes(serie: str | None = None):
 
 
 @router.get("/{clube_id}")
-async def detalhes_clube(clube_id: int):
+def detalhes_clube(clube_id: int):
     for clube in clubes:
         if clube_id == clube.id:
             return clube
