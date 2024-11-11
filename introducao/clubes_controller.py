@@ -29,8 +29,11 @@ def get_clubes(serie: str | None = None):
 
 @router.get("/{clube_id}")
 def detalhes_clube(clube_id: int):
-    for clube in clubes:
-        if clube_id == clube.id:
+    with Session(get_engine()) as session:
+        statement = select(Clube).where(Clube.id == clube_id)
+        clube = session.exec(statement).one_or_none()
+        
+        if clube:
             return clube
 
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Clube não encontrado com id = {clube_id}")
@@ -49,9 +52,16 @@ def add_clube(request_clube: RequestClube):
 
 @router.put("/{clube_id}")
 def update_clube(clube_id: int, dados: RequestClube):
-    for clube in clubes:
-        if clube.id == clube_id:
+    with Session(get_engine()) as session:
+        statement = select(Clube).where(Clube.id == clube_id)
+        clube = session.exec(statement).one_or_none()
+        
+        if clube:
             clube.nome = dados.nome
+            clube.serie = dados.serie
+            session.add(clube)
+            session.commit()
+            session.refresh(clube)
             return clube
     
     raise HTTPException(
@@ -61,9 +71,13 @@ def update_clube(clube_id: int, dados: RequestClube):
 
 @router.delete("/{clube_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_clube(clube_id: int):
-    for clube in clubes:
-        if clube.id == clube_id:
-            clubes.remove(clube)
+    with Session(get_engine()) as session:
+        statement = select(Clube).where(Clube.id == clube_id)
+        clube = session.exec(statement).one_or_none()
+
+        if clube:
+            session.delete(clube)
+            session.commit()
             return
     
     raise HTTPException(
