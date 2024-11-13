@@ -1,5 +1,5 @@
 # 1. Máquina com Python
-FROM python:3.11.6-slom-bullseye
+FROM python:3.11.6-slim-bullseye
 
 # 2. Copiar arquivos
 WORKDIR /home/app
