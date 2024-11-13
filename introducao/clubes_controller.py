@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status, HTTPException
-from .models import *
+from models import *
 from sqlmodel import Session, select
-from .database import get_engine
+from database import get_engine
 
 
 router = APIRouter()
