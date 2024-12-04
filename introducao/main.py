@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from sqlmodel import SQLModel
-from clubes_controller import router as clubes_router
-from database import get_engine
+from .clubes_controller import router as clubes_router
+from .database import get_engine
 
 # Passos
 # > pip install -r requirements.txt
