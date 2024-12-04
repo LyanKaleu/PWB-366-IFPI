@@ -7,7 +7,7 @@
 
 > [FastAPI do Zero - Curso Completo](https://github.com/dunossauro/fastapi-do-zero)
 
-### Livros
+### Livros/Artigos
 
 > [FastAPI - Livro - Docs](https://fastapi.tiangolo.com/learn/?authuser=0)
 
@@ -33,6 +33,41 @@
 > - **autor**: Autor do livro.
 > - **pais**: País de origem do livro.
 > - **quantidade de páginas**: Número de páginas do livro.
+
+
+- [API Books v2](https://github.com/LyanKaleu/PWB-366-IFPI/tree/main/2024-11-05)
+
+> Organize o código de acordo com o visto em sala de aula em Models, Controllers, Database e Main
+> Use Banco de Dados SQL
+> - Sugestão: Tente conectar com BD `PostgreSQL`
+
+
+- [API - Tasks (Autenticação)](https://github.com/LyanKaleu/PWB-366-IFPI/tree/main/api_todo)
+  
+> Desenvolva uma API para gerenciamento de Tarefas (TODOs) usando FastAPI. Implemente operações para:
+> 
+> - **Criar Tarefa**: Enviar título, descrição e status de conclusão (opcional).
+> - **Listar Todas**: Retornar todas as tarefas cadastradas.
+> - **Obter Tarefa por ID**: Buscar uma tarefa específica pelo ID.
+> - **Atualizar Tarefa**: Modificar título, descrição ou status de conclusão.
+> - **Excluir Tarefa**: Deletar uma tarefa pelo ID.
+> 
+> Atributos das Tarefas:
+> 
+> - **id**: Identificador único.
+> - **title**: Título da tarefa.
+> - **description**: Descrição da tarefa.
+> - **is_completed**: Status de conclusão (padrão: false).
+> - **created_at**: Data e hora de criação.
+> 
+> Estrutura do Projeto:
+> 
+> - **Arquivos:** `main.py`, `models.py`, `controllers.py`.
+> - **Banco de Dados:** SQLite ou PostgreSQL.
+> - **Validações:** Utilize Pydantic para validar entradas.
+> 
+> **Dependências:**  
+> FastAPI, SQLModel, Uvicorn.
 
 
 
