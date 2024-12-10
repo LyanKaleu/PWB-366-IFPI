@@ -19,7 +19,7 @@ async def create_task(request_task: RequestTask):
         return valid_task
 
 
-@router.get("", status_code=status.HTTP_200_OK)
+@router.get("", response_model=list[Task], status_code=status.HTTP_200_OK)
 async def get_all_tasks():
     with Session(get_engine()) as session:
         tasks = session.exec(select(Task)).all()
@@ -39,7 +39,7 @@ async def get_task_by_id(task_id: int):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Task not found with id = {task_id}")
 
 
-@router.put("/{task_id}", response_model=Task)
+@router.put("/{task_id}", response_model=Task, status_code=status.HTTP_200_OK)
 async def update_task(task_id: int, request_task: RequestTask):
     with Session(get_engine()) as session:
         statement = select(Task).where(Task.id == task_id)
@@ -72,7 +72,7 @@ async def delete_task(task_id: int):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Task not found with id = {task_id}")
 
 
-@router.post("/{task_id}/done", response_model=Task)
+@router.post("/{task_id}/done", response_model=Task, status_code=status.HTTP_200_OK)
 async def task_mark_as_done(task_id: int):
     with Session(get_engine()) as session:
         statement = select(Task).where(Task.id == task_id)
