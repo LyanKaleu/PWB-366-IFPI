@@ -12,6 +12,7 @@ class TaskBase(SQLModel):
 
 class Task(TaskBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
+    user_id: int | None = Field(default=None, foreign_key='user.id')
 
 
 class RequestTask(TaskBase):

@@ -14,6 +14,13 @@ router = APIRouter()
 
 @router.post('/signup', response_model=UserBase)
 async def signup(user_data: SignUpUserRequest):
+    with Session(get_engine()) as session:
+        sttm = select(User).where(User.email == user_data.email, User.username == user_data.username)
+        user = session.exec(sttm).first()
+
+        if user:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Email already exists')
+
     if user_data.password != user_data.confirm_password:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Passwords do not match')
 
@@ -63,3 +70,11 @@ async def signin(login_data: SignInUserRequest):
 @router.get('/me', response_model=UserBase)
 async def me(user: Annotated[User, Depends(get_logged_user)]):
     return user
+
+
+@router.get('', response_model=list[UserBase])
+async def get_all_users():
+    with Session(get_engine()) as session:
+        users = session.exec(select(User)).all()
+
+        return users
