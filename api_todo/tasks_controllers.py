@@ -32,9 +32,9 @@ async def create_task(request_task: RequestTask, user: Annotated[User, Depends(g
 
 
 @router.get("", response_model=list[Task], status_code=status.HTTP_200_OK)
-async def get_all_tasks():
+async def get_all_tasks(user: Annotated[User, Depends(get_logged_user)]):
     with Session(get_engine()) as session:
-        tasks = session.exec(select(Task)).all()
+        tasks = session.exec(select(Task).where(Task.user_id == user.id)).all()
 
         return tasks
 
