@@ -1,5 +1,6 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends, status, HTTPException, Response
+from sqlalchemy.orm import selectinload
 from sqlmodel import Session, select
 from .auth_utils import get_logged_user
 from .models import *
@@ -31,10 +32,10 @@ async def create_task(request_task: RequestTask, user: Annotated[User, Depends(g
         return valid_task
 
 
-@router.get("", response_model=list[Task], status_code=status.HTTP_200_OK)
+@router.get("", response_model=list[TaskPublic], status_code=status.HTTP_200_OK)
 async def get_all_tasks(user: Annotated[User, Depends(get_logged_user)]):
     with Session(get_engine()) as session:
-        tasks = session.exec(select(Task).where(Task.user_id == user.id)).all()
+        tasks = session.exec(select(Task).options(selectinload(Task.user))).all()
 
         return tasks
 
@@ -89,6 +90,9 @@ async def task_mark_as_done(task_id: int, user: Annotated[User, Depends(get_logg
     with Session(get_engine()) as session:
         statement = select(Task).where(Task.id == task_id, Task.user_id == user.id)
         task = session.exec(statement).first()
+
+        if task.done:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Task already done")
 
         if task:
             task.done = True
