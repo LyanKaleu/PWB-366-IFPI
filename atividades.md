@@ -19,7 +19,7 @@
 > - **pais**: País de origem do livro.
 > - **quantidade de páginas**: Número de páginas do livro.
 
-
+<br/><br/>
 - [API Books v2](https://github.com/LyanKaleu/PWB-366-IFPI/tree/main/2024-11-05)
 
 > Organize o código de acordo com o visto em sala de aula em Models, Controllers, Database e Main
@@ -27,6 +27,7 @@
 > - Sugestão: Tente conectar com BD `PostgreSQL`
 
 
+<br/><br/>
 - [API - Tasks (Autenticação)](https://github.com/LyanKaleu/PWB-366-IFPI/tree/main/api_todo)
   
 > Desenvolva uma API para gerenciamento de Tarefas (TODOs) usando FastAPI. Implemente operações para:
@@ -54,7 +55,8 @@
 > **Dependências:**  
 > FastAPI, SQLModel, Uvicorn.
 
--[Gestão de Projeto - Django Admin](https://github.com/LyanKaleu/PWB-366-IFPI/tree/main/django_projects/app_projetos)
+<br/><br/>
+- [Gestão de Projeto - Django Admin](https://github.com/LyanKaleu/PWB-366-IFPI/tree/main/django_projects/app_projetos)
 
 > Objetivo: Criar um sistema de gerenciamento de projetos utilizando Django e o recurso Admin para gerenciar projetos, equipes, membros e atividades.
 >
@@ -67,7 +69,7 @@
 > - **Um Projeto** pode ter **várias Atividades**.
 > - **Uma Atividade** é realizada por **um Membro** da equipe do projeto.
 >
-> --
+> ---
 >
 > Etapas de Desenvolvimento
 >
@@ -98,20 +100,20 @@
 > ---
 >
 > Diagrama de Relacionamento
-```plaintext
-┌─────────────┐         ┌───────────┐
-│   Projeto   │ 1     1 │   Equipe  │
-└─────────────┘         └───────────┘
-       │ 1                   │ 1
-       │                     │
-       │                     ▼ *
-       │                ┌───────────┐
-       │                │   Membro  │
-       │                └───────────┘
-       │                     ▲ 1
-       │                     │
-       │         ┌───────────┘
-       ▼ *       │
-┌─────────────┐  │
-│  Atividade  │──┘*
-└─────────────┘
+>```plaintext
+>┌─────────────┐         ┌───────────┐
+>│   Projeto   │ 1 ─── 1 │   Equipe  │
+>└─────────────┘         └───────────┘
+>       │ 1                   │ 1
+>       │                     │
+>       │                     ▼ *
+>       │                ┌───────────┐
+>       │                │   Membro  │
+>       │                └───────────┘
+>       │                     ▲ 1
+>       │                     │
+>       │         ┌───────────┘
+>       ▼ *       |
+>┌─────────────┐  │
+>│  Atividade  │──┘*
+>└─────────────┘
