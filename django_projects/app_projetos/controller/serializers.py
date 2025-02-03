@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Projeto, Equipe
+from .models import Projeto, Equipe, Comentario
 
 
 class EquipeSerializer(serializers.ModelSerializer):
@@ -26,3 +26,10 @@ class ProjetoSerializer(serializers.ModelSerializer):
         equipe = Equipe.objects.create(**equipe_data)
         projeto = Projeto.objects.create(equipe=equipe, **validated_data)
         return projeto
+
+
+class ComentarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comentario
+        fields = '__all__'
+        

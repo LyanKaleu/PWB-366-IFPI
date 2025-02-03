@@ -97,3 +97,12 @@ class Atividade(models.Model):
     @admin.display(description='Atrasada?')
     def atrasada(self):
         return not self.feito and self.data_limite < datetime.date.today()
+
+
+class Comentario(models.Model):
+    texto = models.TextField('Comentário', max_length=500, blank=False, null=False)
+    criado_em = models.DateTimeField('Data Criação', auto_now_add=True)
+    atualizado_em = models.DateTimeField('Última atuualização', auto_now=True)
+    
+    def __str__(self):
+        return f'{self.texto} ({self.atualizado_em})'
