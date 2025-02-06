@@ -1,15 +1,17 @@
-from rest_framework import status
-from rest_framework.views import APIView
+from controller.permissions import Permissions
+from rest_framework import generics, status, viewsets
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from .models import Projeto, Equipe, Comentario
 from .serializers import ComentarioSerializer, ProjetoSerializer, EquipeSerializer
-from rest_framework import generics, viewsets
 
 
 # Viewset para o comentário
 class ComentarioViewSet(viewsets.ModelViewSet):
     queryset = Comentario.objects.all()
     serializer_class = ComentarioSerializer
+    permission_classes = [IsAuthenticated, Permissions]
 
 
 # POST e GET em /api/equipes/
@@ -17,6 +19,18 @@ class EquipeListCreateView(generics.ListCreateAPIView):
     # get() da mãe, e list() da vó
     queryset = Equipe.objects.all()
     serializer_class = EquipeSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        ativo = self.request.query_params.get('ativo') or None
+
+        queryset = super().get_queryset()
+
+        if ativo is not None:
+            valor = True if ativo == '1' else False
+            queryset = Equipe.objects.filter(ativa=valor)
+        
+        return queryset
 
 
 # GET, PUT e DELETE em /api/equipes/<int:pk>/

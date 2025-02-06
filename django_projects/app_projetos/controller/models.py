@@ -1,18 +1,24 @@
 from django.db import models
 from django.contrib import admin
+from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
 import datetime
 
 
 # Create your models here.
 class Projeto(models.Model):
     nome = models.CharField(max_length=100, blank=False, null=False)
-    descricao = models.CharField(max_length=200, blank=False, null=False)
-    data_inicio = models.DateField()
-    data_final = models.DateField()
-    equipe = models.OneToOneField(
+    descricao = models.CharField('Descrição', max_length=200, blank=False, null=False)
+    data_inicio = models.DateField('Data de Início')
+    data_final = models.DateField('Data de Fim')
+    orcamento = models.DecimalField('Orçamento', max_digits=10, decimal_places=2, blank=False, null=True)
+
+    equipe = models.ForeignKey(
         'Equipe', 
         on_delete=models.CASCADE,
-        related_name='projeto'
+        related_name='projetos',
+        null=True,
+        blank=True
     )
 
     class Meta:
@@ -34,6 +40,7 @@ class Projeto(models.Model):
 
 class Equipe(models.Model):
     nome = models.CharField(max_length=100, blank=False, null=False)
+    ativa = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'Equipe'
@@ -46,15 +53,29 @@ class Equipe(models.Model):
     @admin.display(description='Qtd Membros')
     def quantidade_membros(self):
         return self.membros.count()
+
+
+SEXO_CHOICES = (('M', 'Masculino'), ('F', 'Feminino'), ('O', 'Outro'))
     
 
 class Membro(models.Model):
     nome = models.CharField(max_length=100, blank=False, null=False)
+    sexo = models.CharField(max_length=1, default='O', choices=SEXO_CHOICES, blank=False, null=False)
     funcao = models.CharField(max_length=100, blank=False, null=False)
+    telefone = models.CharField(
+        max_length=15,
+        help_text='(99) 99999-9999',
+        validators=[RegexValidator(regex=r'^\(\d{2}\) \d{5}-\d{4}$', message='Telefone deve estar no formato (99) 99999-9999')],
+        null=True,
+        blank=True
+    )
+    ativo = models.BooleanField(default=True)
     equipe = models.ForeignKey( 
         'Equipe', 
         on_delete=models.CASCADE,
-        related_name='membros'
+        related_name='membros',
+        null=True,
+        blank=True
     )
 
     class Meta:
@@ -63,7 +84,7 @@ class Membro(models.Model):
         ordering = ['nome']
 
     def __str__(self):
-        return self.nome
+        return f'{self.nome} ({self.equipe})'
     
     @admin.display(description='Qtd Atividades')
     def quantidade_atividades(self):
@@ -83,7 +104,9 @@ class Atividade(models.Model):
     membro = models.ForeignKey(
         'Membro', 
         on_delete=models.CASCADE,
-        related_name='atividades'
+        related_name='atividades',
+        null=True,
+        blank=True
     )
 
     class Meta:

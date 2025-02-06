@@ -28,6 +28,12 @@ class ProjetoSerializer(serializers.ModelSerializer):
         return projeto
 
 
+class ProjetoCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Projeto
+        fields = ['id', 'nome', 'data_inicio', 'data_final', 'orcamento']
+
+
 class ComentarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comentario
