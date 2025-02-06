@@ -7,6 +7,9 @@
 
 > [FastAPI do Zero - Curso Completo](https://github.com/dunossauro/fastapi-do-zero)
 
+> [DRF - Tutorial](https://github.com/marrcandre/django-drf-tutorial?tab=readme-ov-file)
+
+
 ### Livros/Artigos
 
 > [FastAPI - Livro - Docs](https://fastapi.tiangolo.com/learn/?authuser=0)
@@ -22,3 +25,7 @@
 > [Slides FastAPI - Let's Code Together](https://github.com/LyanKaleu/PWB-366-IFPI/blob/main/slides/FastAPI%20Slides%20-%20Courses.pdf)
 > 
 > [Slides - Django](https://github.com/LyanKaleu/PWB-366-IFPI/blob/main/slides/Django-Dive-Into.pdf)
+>
+> [Introdução a DRF](https://github.com/LyanKaleu/PWB-366-IFPI/blob/main/slides/DRF.pdf)
+>
+> [DRF Full - API Cidades - Completa](https://github.com/LyanKaleu/PWB-366-IFPI/blob/main/slides/DRF%20Full%202024%20-%20API%20Cidades%20-%20Completa.pdf)
