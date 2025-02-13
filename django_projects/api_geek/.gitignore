@@ -1,0 +1,44 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media
+
+# Environments
+.env
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Django specific
+*.mo
+*.py[cod]
+*.pyo
+*.so
+*.sqlite3
+
+# Django migrations
+**/migrations/
+
+# Static files
+staticfiles/
+static/
+
+# Local settings
+local_settings.py
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
